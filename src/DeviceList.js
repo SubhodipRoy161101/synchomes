@@ -68,7 +68,7 @@ const DeviceList = (props) => {
             pb={0}
             borderRadius="xl"
             // m={5}
-            h={"50vh"}
+            h={window.innerWidth > 850 ? "50vh" : "30vh"}
             w={"20vw"}
             // mx={window.innerWidth > 850 ? "25%" : "0%"}
             minW={window.innerWidth > 850 ? "100%" : "100%"}
