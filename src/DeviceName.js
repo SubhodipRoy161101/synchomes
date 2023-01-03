@@ -1,4 +1,4 @@
-import { Button, Icon } from "@chakra-ui/react";
+import { Button, Icon, useColorModeValue } from "@chakra-ui/react";
 import React from "react";
 import { BiEditAlt } from "react-icons/bi";
 import { AiOutlineCloseCircle } from "react-icons/ai";
@@ -7,6 +7,7 @@ const DeviceName = (props) => {
   const handleClick = () => {
     props.setIsShown((current) => !current);
   };
+  const colorHove = useColorModeValue("orange.200", "orange.50");
   return (
     <div className="container">
       <div className="row">
@@ -16,12 +17,12 @@ const DeviceName = (props) => {
             onClick={handleClick}
             fontSize={20}
             colorScheme="orange"
-            bg="orange.100"
+            bg={useColorModeValue("orange.100", "orange.500")}
             variant="ghost"
             p={4}
             mt={4}
             borderRadius="xl"
-            _hover={{ bg: "orange.200" }}
+            // _hover={{ bg: "orange.50" }}
           >
             <p>{props.device} </p>
             <Icon

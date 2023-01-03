@@ -10,6 +10,7 @@ import {
   Button,
   Icon,
   Center,
+  useColorModeValue,
 } from "@chakra-ui/react";
 import { FcGoogle } from "react-icons/fc";
 import { HiOutlineLogout } from "react-icons/hi";
@@ -43,7 +44,7 @@ const Login = () => {
     setUid(" Login to get UID");
     navigate("/");
   };
-
+  const color = useColorModeValue("red.100", "red.600");
   return (
     <>
       {localStorage.getItem("uid") ? (
@@ -51,7 +52,7 @@ const Login = () => {
           <div className="container">
             <div className="row m-5">
               <Button
-                bg="red.100"
+                bg={color}
                 p={10}
                 borderRadius="xl"
                 m={window.innerWidth > 850 ? "25%" : "0px"}
@@ -102,7 +103,7 @@ const Login = () => {
             </div>
 
             <Button
-              bg="red.100"
+              bg={color}
               p={10}
               borderRadius="xl"
               mx={window.innerWidth > 850 ? "25%" : "0%"}

@@ -1,6 +1,6 @@
 import React from "react";
 import { updateDoc } from "firebase/firestore";
-import { Button, Input, Icon } from "@chakra-ui/react";
+import { Button, Input, Icon, useColorModeValue } from "@chakra-ui/react";
 import { MdOutlineDone } from "react-icons/md";
 
 const EditName = (props) => {
@@ -22,7 +22,7 @@ const EditName = (props) => {
           <Input
             variant="unstyled"
             placeholder="Device is located in"
-            bg="red.100"
+            bg={useColorModeValue("red.100", "red.600")}
             p="4"
             m="2"
             // h={"inherit"}
@@ -35,7 +35,7 @@ const EditName = (props) => {
         <div className="col-2 col-lg-2">
           <Button
             colorScheme="red"
-            bg="red.100"
+            bg={useColorModeValue("red.100", "red.600")}
             variant="ghost"
             p={4}
             borderRadius="xl"

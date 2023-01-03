@@ -5,7 +5,14 @@ import SwitchContext from "./context/switch/SwitchContext";
 import { doc, getDoc } from "firebase/firestore";
 import { db } from "./firebase";
 import { AiOutlineControl } from "react-icons/ai";
-import { Icon, Button, Box, Text, Center } from "@chakra-ui/react";
+import {
+  Icon,
+  Button,
+  Box,
+  Text,
+  Center,
+  useColorModeValue,
+} from "@chakra-ui/react";
 
 const DeviceList = (props) => {
   const context = useContext(ControlContext);
@@ -42,62 +49,58 @@ const DeviceList = (props) => {
     <>
       <div className="col-6 col-lg-3">
         {/* {props.did} <br /> {devName.name} */}
-        <Box
+        {/* <Box
           bg="red.200"
           borderRadius="xl"
           mb={8}
-          mx={3}
-          onClick={handleClick}
+          // mx={3}
+
           _hover={{ bg: "red.200", cursor: "pointer" }}
-        >
-          <Center>
-            <Button
-              colorScheme="red"
-              bg="red.200"
-              variant="ghost"
-              p={5}
-              pb={0}
-              borderRadius="xl"
-              m={5}
-              // h={"25vh"}
-              // mx={window.innerWidth > 850 ? "25%" : "0%"}
-              // minW={window.innerWidth > 850 ? "100%" : "100%"}
-              // maxW={window.innerWidth > 850 ? "100%" : "100%"}
-              _hover={{ bg: "red.200" }}
-            >
-              <Icon fontSize={50} as={AiOutlineControl} />
-            </Button>
-          </Center>
-          <div className="row">
-            <div className="col-12">
-              {/* <Button
-                color="red"
-                bg="red.200"
-                variant="ghost"
-                p={2}
-                minW={"100%"}
-                maxW={"100%"}
-                borderRadius="xl"
-              > */}
-              <Center>
-                <Text
-                  as={"b"}
-                  fontSize="xl"
-                  color="red.600"
-                  minW={"100%"}
-                  maxW={"100%"}
-                  p={2}
-                  pt={0}
-                  align="center"
-                >
-                  {/* {props.did} <br /> */}
-                  {devName.name}
-                </Text>
-              </Center>
-              {/* </Button> */}
+        > */}
+        <Center>
+          <Button
+            mb={8}
+            onClick={handleClick}
+            colorScheme={useColorModeValue("red", "red")}
+            bg={useColorModeValue("red.100", "red.600")}
+            variant="ghost"
+            p={5}
+            pb={0}
+            borderRadius="xl"
+            // m={5}
+            h={"50vh"}
+            w={"20vw"}
+            // mx={window.innerWidth > 850 ? "25%" : "0%"}
+            minW={window.innerWidth > 850 ? "100%" : "100%"}
+            maxW={window.innerWidth > 850 ? "100%" : "100%"}
+            // _hover={{ bg: "red.200" }}
+          >
+            <div className="row">
+              <div className="col-12">
+                <Icon fontSize={80} as={AiOutlineControl} />
+              </div>
+              <div className="col-12 mt-5">
+                <Center>
+                  <Text
+                    as={"b"}
+                    fontSize="xl"
+                    // color="red.600"
+                    // minW={"100%"}
+                    // maxW={"100%"}
+                    // p={2}
+                    pt={0}
+                    align="center"
+                  >
+                    {/* {props.did} <br /> */}
+                    {devName.name}
+                  </Text>
+                </Center>
+                {/* </Button> */}
+              </div>
             </div>
-          </div>
-        </Box>
+          </Button>
+        </Center>
+        {/* </Box> */}
       </div>
     </>
   );

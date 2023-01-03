@@ -6,11 +6,14 @@ import ControlPage from "./ControlPage";
 import ControlState from "./context/Control/ControlState";
 import SwitchState from "./context/switch/SwitchState";
 import { ChakraProvider } from "@chakra-ui/react";
+import ToggleTheme from "./ToggleTheme";
+import { useState } from "react";
+import theme from "./theme";
 
 function App() {
   return (
     <>
-      <ChakraProvider>
+      <ChakraProvider theme={theme}>
         <DidState>
           <ControlState>
             <SwitchState>
@@ -20,6 +23,7 @@ function App() {
                   <Route path="/login" element={<Login />} />
                   <Route path="/control" element={<ControlPage />} />
                 </Routes>
+                <ToggleTheme />
               </BrowserRouter>
             </SwitchState>
           </ControlState>
