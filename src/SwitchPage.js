@@ -12,8 +12,8 @@ const SwitchPage = (props) => {
           onClick={() => props.updateSwitch("1")}
         >
           <Button
-            colorScheme="purple"
-            bg="purple.200"
+            colorScheme="red"
+            bg="red.200"
             variant="ghost"
             p={10}
             borderRadius="xl"
@@ -22,7 +22,7 @@ const SwitchPage = (props) => {
             ml={window.innerWidth > 850 ? "50%" : "0%"}
             minW={window.innerWidth > 850 ? "50%" : "100%"}
             maxW={window.innerWidth > 850 ? "50%" : "100%"}
-            _hover={{ bg: "purple.200" }}
+            _hover={{ bg: "red.200" }}
           >
             <Box fontSize={"50"}>
               {props.switchVal.btn1 ? (
@@ -36,8 +36,8 @@ const SwitchPage = (props) => {
 
         <div className="col-6 col-lg-6" onClick={() => props.updateSwitch("2")}>
           <Button
-            colorScheme="purple"
-            bg="purple.200"
+            colorScheme="red"
+            bg="red.200"
             variant="ghost"
             p={10}
             borderRadius="xl"
@@ -46,7 +46,7 @@ const SwitchPage = (props) => {
             mr={window.innerWidth > 850 ? "50%" : "0%"}
             minW={window.innerWidth > 850 ? "50%" : "100%"}
             maxW={window.innerWidth > 850 ? "50%" : "100%"}
-            _hover={{ bg: "purple.200" }}
+            _hover={{ bg: "red.200" }}
           >
             <Box fontSize={"50"}>
               {props.switchVal.btn2 ? (
@@ -60,8 +60,8 @@ const SwitchPage = (props) => {
 
         <div className="col-6 col-lg-6" onClick={() => props.updateSwitch("3")}>
           <Button
-            colorScheme="purple"
-            bg="purple.200"
+            colorScheme="red"
+            bg="red.200"
             variant="ghost"
             p={10}
             borderRadius="xl"
@@ -70,7 +70,7 @@ const SwitchPage = (props) => {
             ml={window.innerWidth > 850 ? "50%" : "0%"}
             minW={window.innerWidth > 850 ? "50%" : "100%"}
             maxW={window.innerWidth > 850 ? "50%" : "100%"}
-            _hover={{ bg: "purple.200" }}
+            _hover={{ bg: "red.200" }}
           >
             <Box fontSize={"50"}>
               {props.switchVal.btn3 ? (
@@ -83,8 +83,8 @@ const SwitchPage = (props) => {
         </div>
         <div className="col-6 col-lg-6" onClick={() => props.updateSwitch("4")}>
           <Button
-            colorScheme="purple"
-            bg="purple.200"
+            colorScheme="red"
+            bg="red.200"
             variant="ghost"
             p={10}
             borderRadius="xl"
@@ -93,7 +93,7 @@ const SwitchPage = (props) => {
             mr={window.innerWidth > 850 ? "50%" : "0%"}
             minW={window.innerWidth > 850 ? "50%" : "100%"}
             maxW={window.innerWidth > 850 ? "50%" : "100%"}
-            _hover={{ bg: "purple.200" }}
+            _hover={{ bg: "red.200" }}
           >
             <Box fontSize={"50"}>
               {props.switchVal.btn4 ? (

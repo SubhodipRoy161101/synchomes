@@ -54,7 +54,7 @@ const DeviceId = () => {
         <div className="col-6 col-lg-6">
           <center
             p={10}
-            bg="purple.200"
+            bg="red.200"
             // borderRadius="xl"
             h={"30vh"}
             mb={8}
@@ -64,8 +64,8 @@ const DeviceId = () => {
             <Stack direction="row" spacing={4}>
               <Button
                 leftIcon={<BiArrowBack />}
-                colorScheme="purple"
-                bg="purple.200"
+                colorScheme="red"
+                bg="red.200"
                 variant="ghost"
                 borderRadius="50px"
                 height="50px"

@@ -22,20 +22,20 @@ const EditName = (props) => {
           <Input
             variant="unstyled"
             placeholder="Device is located in"
-            bg="purple.100"
+            bg="red.100"
             p="4"
             m="2"
             // h={"inherit"}
-            color="purple.600"
-            _placeholder={{ opacity: 0.4, color: "purple.600" }}
+            color="red.600"
+            _placeholder={{ opacity: 0.4, color: "red.600" }}
             onChange={onChange}
             name="dName"
           />
         </div>
         <div className="col-2 col-lg-2">
           <Button
-            colorScheme="purple"
-            bg="purple.100"
+            colorScheme="red"
+            bg="red.100"
             variant="ghost"
             p={4}
             borderRadius="xl"
@@ -43,7 +43,7 @@ const EditName = (props) => {
             mr={window.innerWidth > 850 ? "50%" : "0%"}
             minW={window.innerWidth > 850 ? "50%" : "100%"}
             maxW={window.innerWidth > 850 ? "50%" : "100%"}
-            _hover={{ bg: "purple.200" }}
+            _hover={{ bg: "red.200" }}
             h={"inherit"}
             fontSize="25px"
             onClick={updateName}

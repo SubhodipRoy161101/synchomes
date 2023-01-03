@@ -43,17 +43,17 @@ const DeviceList = (props) => {
       <div className="col-6 col-lg-3">
         {/* {props.did} <br /> {devName.name} */}
         <Box
-          bg="purple.200"
+          bg="red.200"
           borderRadius="xl"
           mb={8}
           mx={3}
           onClick={handleClick}
-          _hover={{ bg: "purple.200", cursor: "pointer" }}
+          _hover={{ bg: "red.200", cursor: "pointer" }}
         >
           <Center>
-            <Box
-              color="purple"
-              bg="purple.200"
+            <Button
+              colorScheme="red"
+              bg="red.200"
               variant="ghost"
               p={5}
               pb={0}
@@ -63,16 +63,16 @@ const DeviceList = (props) => {
               // mx={window.innerWidth > 850 ? "25%" : "0%"}
               // minW={window.innerWidth > 850 ? "100%" : "100%"}
               // maxW={window.innerWidth > 850 ? "100%" : "100%"}
-              _hover={{ bg: "purple.200" }}
+              _hover={{ bg: "red.200" }}
             >
               <Icon fontSize={50} as={AiOutlineControl} />
-            </Box>
+            </Button>
           </Center>
           <div className="row">
             <div className="col-12">
               {/* <Button
-                color="purple"
-                bg="purple.200"
+                color="red"
+                bg="red.200"
                 variant="ghost"
                 p={2}
                 minW={"100%"}
@@ -83,7 +83,7 @@ const DeviceList = (props) => {
                 <Text
                   as={"b"}
                   fontSize="xl"
-                  color="purple"
+                  color="red.600"
                   minW={"100%"}
                   maxW={"100%"}
                   p={2}

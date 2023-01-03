@@ -3,7 +3,14 @@ import { auth, provider } from "./firebase";
 import { signInWithPopup } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import DidContext from "./context/DidContext";
-import { Box, Heading, Highlight, Button, Icon } from "@chakra-ui/react";
+import {
+  Box,
+  Heading,
+  Highlight,
+  Button,
+  Icon,
+  Center,
+} from "@chakra-ui/react";
 import { FcGoogle } from "react-icons/fc";
 import { HiOutlineLogout } from "react-icons/hi";
 
@@ -44,13 +51,13 @@ const Login = () => {
           <div className="container">
             <div className="row m-5">
               <Button
-                bg="purple.100"
+                bg="red.100"
                 p={10}
                 borderRadius="xl"
                 m={window.innerWidth > 850 ? "25%" : "0px"}
                 minW={window.innerWidth > 850 ? "50%" : "100%"}
                 maxW={window.innerWidth > 850 ? "50%" : "100%"}
-                _hover={{ bg: "purple.200" }}
+                _hover={{ bg: "red.100" }}
                 variant="ghost"
                 fontSize={20}
                 onClick={logout}
@@ -70,36 +77,38 @@ const Login = () => {
                   bg="gray.100"
                   p={10}
                   borderRadius="xl"
-                  mx={window.innerWidth > 850 ? "25%" : "25%"}
+                  mx={window.innerWidth > 850 ? "25%" : "0%"}
                   minW={window.innerWidth > 850 ? "50%" : "100%"}
                   maxW={window.innerWidth > 850 ? "50%" : "100%"}
-                  _hover={{ bg: "purple.100" }}
+                  _hover={{ bg: "red.100" }}
                 >
-                  <Heading lineHeight="tall">
-                    <Highlight
-                      query="Login"
-                      styles={{
-                        px: "4",
-                        py: "2",
-                        rounded: "full",
-                        bg: "purple.200",
-                      }}
-                    >
-                      Please Login To Continue
-                    </Highlight>
+                  <Heading lineHeight="tall" alignContent={"center"}>
+                    <Center>
+                      <Highlight
+                        query="Login"
+                        styles={{
+                          px: "4",
+                          py: "2",
+                          rounded: "full",
+                          bg: "red.100",
+                        }}
+                      >
+                        Please Login To Continue
+                      </Highlight>
+                    </Center>
                   </Heading>
                 </Box>
               </div>
             </div>
 
             <Button
-              bg="purple.100"
+              bg="red.100"
               p={10}
               borderRadius="xl"
               mx={window.innerWidth > 850 ? "25%" : "0%"}
               minW={window.innerWidth > 850 ? "50%" : "100%"}
               maxW={window.innerWidth > 850 ? "50%" : "100%"}
-              _hover={{ bg: "purple.200" }}
+              _hover={{ bg: "red.100" }}
               onClick={googleSignIn}
               variant="ghost"
               fontSize={20}

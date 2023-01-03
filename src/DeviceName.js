@@ -15,13 +15,13 @@ const DeviceName = (props) => {
           <Button
             onClick={handleClick}
             fontSize={20}
-            colorScheme="purple"
-            bg="purple.100"
+            colorScheme="orange"
+            bg="orange.100"
             variant="ghost"
             p={4}
             mt={4}
             borderRadius="xl"
-            _hover={{ bg: "purple.200" }}
+            _hover={{ bg: "orange.200" }}
           >
             <p>{props.device} </p>
             <Icon
