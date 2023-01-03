@@ -5,7 +5,7 @@ import DidState from "./context/DidState";
 import ControlPage from "./ControlPage";
 import ControlState from "./context/Control/ControlState";
 import SwitchState from "./context/switch/SwitchState";
-import { ChakraProvider } from "@chakra-ui/react";
+import { Box, ChakraProvider } from "@chakra-ui/react";
 import ToggleTheme from "./ToggleTheme";
 import { useState } from "react";
 import theme from "./theme";
