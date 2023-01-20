@@ -1,6 +1,5 @@
 import React from "react";
 import { TbBulb, TbBulbOff } from "react-icons/tb";
-import { useLongPress } from "use-long-press";
 
 import { Icon, Box, Button, useColorModeValue } from "@chakra-ui/react";
 
