@@ -1,4 +1,4 @@
-import { Button, Icon, useColorModeValue } from "@chakra-ui/react";
+import { Button, Icon, useColorModeValue, Center } from "@chakra-ui/react";
 import React from "react";
 import { BiEditAlt } from "react-icons/bi";
 import { AiOutlineCloseCircle } from "react-icons/ai";
@@ -7,32 +7,28 @@ const DeviceName = (props) => {
   const handleClick = () => {
     props.setIsShown((current) => !current);
   };
-  const colorHove = useColorModeValue("orange.200", "orange.50");
+  const hoverColor = useColorModeValue(
+    "rgba(255,40,40,0.2)",
+    "rgba(225, 225, 225, 0.1)"
+  );
   return (
-    <div className="container">
-      <div className="row">
-        <div className="col-12 col-lg-12">
-          {/* <Center> */}
-          <Button
-            onClick={handleClick}
-            fontSize={20}
-            colorScheme="orange"
-            bg={useColorModeValue("orange.100", "orange.500")}
-            variant="ghost"
-            p={4}
-            mt={4}
-            borderRadius="xl"
-            // _hover={{ bg: "orange.50" }}
-          >
-            <p>{props.device} </p>
-            <Icon
-              ml={2}
-              as={props.isShown ? BiEditAlt : AiOutlineCloseCircle}
-            />
-          </Button>
-          {/* </Center> */}
-        </div>
-      </div>
+    <div className="col-6 col-lg-6">
+      {/* <Center> */}
+      <Button
+        onClick={handleClick}
+        fontSize={20}
+        colorScheme="red"
+        bg={useColorModeValue("red.100", "rgba(225, 225, 225, 0.1)")}
+        variant="ghost"
+        // p={4}
+        // mt={4}
+        borderRadius="xl"
+        _hover={{ bg: hoverColor }}
+      >
+        <p>{props.device} </p>
+        <Icon ml={2} as={props.isShown ? BiEditAlt : AiOutlineCloseCircle} />
+      </Button>
+      {/* </Center> */}
     </div>
   );
 };

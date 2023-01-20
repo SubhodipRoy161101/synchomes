@@ -15,6 +15,7 @@ const ToggleTheme = () => {
         <div className="col-12">
           <Center>
             <Button
+              mb={2}
               onClick={toggleColorMode}
               fontSize={20}
               colorScheme="orange"
