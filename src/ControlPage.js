@@ -33,7 +33,6 @@ const ControlPage = () => {
     console.log(obj);
 
     await updateDoc(docRef, obj);
-    // deviceVals();
   };
 
   const [isShown, setIsShown] = useState(true);
@@ -47,26 +46,15 @@ const ControlPage = () => {
             setIsShown={setIsShown}
             isShown={isShown}
           />
-          <EditIcon
-            icon={switchVal.icon}
-            // setName={setName}
-            docRef={docRef}
-            // // deviceVals={deviceVals}
-            // setIsShown={setIsShown}
-          />
+          <EditIcon icon={switchVal.icon} docRef={docRef} />
         </div>
         <div className="row justify-content-center mx-3">
-          {/* <Box hidden={isShown}> */}
           <EditName
-            // name={name}
-            // setName={setName}
             docRef={docRef}
-            // deviceVals={deviceVals}
             switchVal={switchVal}
             setIsShown={setIsShown}
             isShown={isShown}
           />
-          {/* </Box> */}
         </div>
       </div>
       <SwitchPage updateSwitch={updateSwitch} switchVal={switchVal} />

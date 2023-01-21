@@ -19,10 +19,10 @@ const Device = (props) => {
 
   const data = {
     name: "Room Name",
-    btn1: 0,
-    btn2: 0,
-    btn3: 0,
-    btn4: 0,
+    btn1: { val: 0, icon: "" },
+    btn2: { val: 0, icon: "" },
+    btn3: { val: 0, icon: "" },
+    btn4: { val: 0, icon: "" },
   };
   const addDevice = () => {
     addDoc(docRef, data)

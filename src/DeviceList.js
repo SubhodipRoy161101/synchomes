@@ -49,6 +49,7 @@ const DeviceList = (props) => {
     getDname();
   }, []);
 
+  console.log(devName);
   var icon = MdOutlineDining;
   if (devName.icon === "MdOutlineDining") {
     icon = MdOutlineDining;
@@ -81,16 +82,7 @@ const DeviceList = (props) => {
               </div>
               <div className="col-12">
                 <Center>
-                  <Text
-                    as={"b"}
-                    fontSize="xl"
-                    // color="red.600"
-                    // minW={"100%"}
-                    // maxW={"100%"}
-                    // p={2}
-                    pt={0}
-                    align="center"
-                  >
+                  <Text as={"b"} fontSize="xl" pt={0} align="center">
                     {/* {props.did} <br /> */}
                     <p>{devName.name}</p>
                   </Text>
