@@ -5,7 +5,6 @@ import { MdOutlineDone } from "react-icons/md";
 
 const EditName = (props) => {
   const [name, setName] = useState(props.switchVal.name);
-  console.log(name);
 
   const onChange = (e) => {
     setName({ [e.target.name]: e.target.value });

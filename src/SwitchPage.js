@@ -2,6 +2,11 @@ import React from "react";
 
 import SwitchControl from "./SwitchControl";
 
+<link
+  rel="stylesheet"
+  href="https://fonts.googleapis.com/icon?family=Material+Icons"
+/>;
+
 const SwitchPage = (props) => {
   // console.log(type(props.switchVal));
   const btns = Object.keys(props.switchVal);
@@ -11,9 +16,7 @@ const SwitchPage = (props) => {
     <div className="container">
       <div className="row my-5 justify-content-between">
         {btns.map((btn) => {
-          console.log(btn);
           if (btn === "name" || btn === "icon") {
-            console.log("");
             return;
           } else {
             return (

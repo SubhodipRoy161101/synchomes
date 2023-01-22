@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import {
   Icon,
   Menu,
@@ -6,7 +6,6 @@ import {
   MenuList,
   MenuItem,
   Button,
-  Center,
   useColorModeValue,
 } from "@chakra-ui/react";
 
@@ -17,8 +16,6 @@ import { BiChevronDown } from "react-icons/bi";
 import { updateDoc } from "firebase/firestore";
 
 const EditIcon = (props) => {
-  console.log(props);
-
   const hoverColor = useColorModeValue(
     "rgba(255,40,40,0.2)",
     "rgba(225, 225, 225, 0.1)"

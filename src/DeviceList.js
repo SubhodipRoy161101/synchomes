@@ -51,14 +51,16 @@ const DeviceList = (props) => {
 
   console.log(devName);
   var icon = MdOutlineDining;
-  if (devName.icon === "MdOutlineDining") {
-    icon = MdOutlineDining;
-  } else if (devName.icon === "RiHotelBedLine") {
-    icon = RiHotelBedLine;
-  } else if (devName.icon === "BiChevronDown") {
-    icon = BiChevronDown;
-  } else if (devName.icon === "MdOutlineDining") {
-    icon = MdOutlineDining;
+  if (devName !== undefined) {
+    if (devName.icon === "MdOutlineDining") {
+      icon = MdOutlineDining;
+    } else if (devName.icon === "RiHotelBedLine") {
+      icon = RiHotelBedLine;
+    } else if (devName.icon === "BiChevronDown") {
+      icon = BiChevronDown;
+    } else if (devName.icon === "MdOutlineDining") {
+      icon = MdOutlineDining;
+    }
   }
   return (
     <>
@@ -84,7 +86,7 @@ const DeviceList = (props) => {
                 <Center>
                   <Text as={"b"} fontSize="xl" pt={0} align="center">
                     {/* {props.did} <br /> */}
-                    <p>{devName.name}</p>
+                    <p>{devName ? devName.name : "Add Device"}</p>
                   </Text>
                 </Center>
                 {/* </Button> */}

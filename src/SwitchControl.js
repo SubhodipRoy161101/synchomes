@@ -1,10 +1,12 @@
 import React, { useRef, useState } from "react";
-import { TbBulb, TbBulbOff } from "react-icons/tb";
 import { doc, updateDoc } from "firebase/firestore";
 import { db } from "./firebase";
 
-import { Icon, Box, Button, useColorModeValue } from "@chakra-ui/react";
-import { redirect } from "react-router-dom";
+import "./SwitchControl.css";
+import "./SwitchControlFilled.css";
+
+import { Box, Button, useColorModeValue } from "@chakra-ui/react";
+import BtnIconChange from "./BtnIconChange";
 
 const SwitchControl = (props) => {
   const uid = localStorage.getItem("uid") ? localStorage.getItem("uid") : 0;
@@ -25,59 +27,101 @@ const SwitchControl = (props) => {
     "rgba(225,225,225,0.1)"
   );
 
-  const switchOffColor = useColorModeValue("red.600", "red.100");
-  const switchOnColor = useColorModeValue("yellow.200", "yellow.400");
+  const switchOffColor = useColorModeValue("red.600", "red.200");
+  const switchOnColor = useColorModeValue("red.800", "yellow.200");
 
-  const [showIconChangeBox, setShowIconChangeBox] = useState(true);
+  const [showIconChangeBox, setShowIconChangeBox] = useState(false);
   const [action, setAction] = useState("");
   const timerRef = useRef();
+  const isLongPress = useRef();
 
-  const updateSwitch = async (btn) => {
-    if (action === "longpress") {
-      return;
-    }
-    console.log(props.switchVal);
-    console.log(btn);
-    const currentState = props.switchVal[btn].val;
-    console.log(currentState);
-    const obj = {};
-    obj[btn] = { val: currentState ? 0 : 1, icon: "icon" };
-    console.log(obj);
-
-    await updateDoc(docRef, obj);
-    // deviceVals();
+  const [isOpen, setIsOpen] = useState(false);
+  const onClose = () => {
+    setIsOpen(false);
   };
-
-  const handleMouseDown = () => {
-    console.log("handleMouseDown");
-    startPressTimer();
-  };
-  const handleMouseUp = () => {
-    console.log("handleMouseUp");
-    clearTimeout(timerRef.current);
-  };
-  const handleTouchStart = () => {
-    console.log("handleTouchStart");
-    startPressTimer();
-  };
-  const handleTouchEnd = () => {
-    console.log("handleTouchEnd");
-    clearTimeout(timerRef.current);
-  };
+  const onOpen = () => setIsOpen(true);
+  const cancelRef = React.useRef();
 
   const startPressTimer = () => {
-    setAction("");
-    setTimeout(() => {
-      console.log("stratPressTimer");
+    isLongPress.current = false;
+    timerRef.current = setTimeout(() => {
+      isLongPress.current = true;
+      onOpen();
       setAction("longpress");
-      setShowIconChangeBox(false);
     }, 500);
   };
 
-  //   console.log(props.values);
+  const updateSwitch = async (btn) => {
+    console.log("handleOnClick");
+    if (isLongPress.current) {
+      console.log("Is long press - not continuing.");
+      return;
+    }
+    const currentState = props.switchVal[btn].val;
+    const currentIcon = props.switchVal[btn].icon;
+    const obj = {};
+    obj[btn] = { val: currentState ? 0 : 1, icon: currentIcon };
+
+    await updateDoc(docRef, obj);
+    setAction("click");
+    // deviceVals();
+  };
+
+  const updateBtnIco = async (btn, ico) => {
+    const currentState = props.switchVal[btn].val;
+    // const currentIcon = props.switchVal[btn].icon;
+    const obj = {};
+    obj[btn] = { val: currentState, icon: ico };
+    await updateDoc(docRef, obj);
+  };
+
+  const handleMouseDown = () => {
+    console.log("handleOnMouseDown");
+    startPressTimer();
+  };
+  const handleMouseUp = () => {
+    console.log("handleOnMouseUp");
+    clearTimeout(timerRef.current);
+  };
+  const handleTouchStart = () => {
+    console.log("handleOnTouchStart");
+    startPressTimer();
+  };
+  const handleTouchEnd = () => {
+    if (action === "longpress") return;
+    console.log("handleOnTouchEnd");
+    clearTimeout(timerRef.current);
+  };
+
+  var btnOnIcon = "mode_fan";
+  var btnOffIcon = "mode_fan";
+  if (props.switchVal !== undefined) {
+    if (props.switchVal[props.btn].icon === "mode_fan") {
+      btnOnIcon = "mode_fan";
+      btnOffIcon = "mode_fan_off";
+    } else if (props.switchVal[props.btn].icon === "fluorescent") {
+      btnOnIcon = "fluorescent";
+      btnOffIcon = "fluorescent";
+    } else if (props.switchVal[props.btn].icon === "lightbulb") {
+      btnOnIcon = "lightbulb";
+      btnOffIcon = "lightbulb";
+    } else if (props.switchVal[props.btn].icon === "tv") {
+      btnOnIcon = "tv";
+      btnOffIcon = "tv";
+    }
+  }
 
   return (
     <>
+      <BtnIconChange
+        isOpen={isOpen}
+        cancelRef={cancelRef}
+        onClose={onClose}
+        updateBtnIco={updateBtnIco}
+        hoverColor={hoverColor}
+        hoverColorMobile={hoverColorMobile}
+        btn={props.btn}
+      />
       <div
         className="col-6  col-lg-3"
         onClick={() => updateSwitch(props.btn)}
@@ -99,11 +143,16 @@ const SwitchControl = (props) => {
             bg: window.innerWidth > 800 ? hoverColor : hoverColorMobile,
           }}
         >
-          <Box fontSize={"50"}>
-            <Icon
-              color={props.values.val ? switchOnColor : switchOffColor}
-              as={TbBulb}
-            />
+          <Box
+            color={props.values.val ? switchOnColor : switchOffColor}
+            className={
+              props.values.val
+                ? "material-symbols-rounded"
+                : "material-symbols-outlined"
+            }
+            fontSize={50}
+          >
+            {props.values.val ? btnOnIcon : btnOffIcon}
           </Box>
         </Button>
       </div>
