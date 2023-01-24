@@ -88,7 +88,7 @@ const SwitchControl = (props) => {
     startPressTimer();
   };
   const handleTouchEnd = () => {
-    if (action === "longpress") return;
+    // if (action === "longpress") return;
     console.log("handleOnTouchEnd");
     clearTimeout(timerRef.current);
   };
