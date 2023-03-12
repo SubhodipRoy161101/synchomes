@@ -29,10 +29,11 @@ const Login = () => {
 
   const googleSignIn = () => {
     signInWithPopup(auth, provider).then((data) => {
-      const uid = data.user.email;
+      // console.log(data);
+      console.log(data.user.reloadUserInfo.localId);
+      const uid = data.user.reloadUserInfo.localId;
       localStorage.setItem("uid", uid);
       console.log(uid);
-      setUid(localStorage.getItem("uid"));
       documentFetch();
       navigate("/");
     });
@@ -40,7 +41,7 @@ const Login = () => {
 
   const logout = () => {
     localStorage.removeItem("uid");
-    // localStorage.removeItem("dids");
+    localStorage.removeItem("dids");
     setUid(" Login to get UID");
     navigate("/");
   };

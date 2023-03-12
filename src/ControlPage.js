@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
 import SwitchContext from "./context/switch/SwitchContext";
 import { updateDoc, doc } from "firebase/firestore";
-import { db } from "./firebase";
+import { db, rtdb } from "./firebase";
 import SwitchPage from "./SwitchPage";
 import DeviceId from "./DeviceId";
 import EditName from "./EditName";
@@ -25,17 +25,20 @@ const ControlPage = () => {
   );
 
   const updateSwitch = async (btn) => {
-    console.log(btn);
-    const currentState = switchVal["btn" + btn];
-    console.log(currentState);
-    const obj = {};
-    obj["btn" + btn] = currentState ? 0 : 1;
-    console.log(obj);
-
-    await updateDoc(docRef, obj);
+    // console.log(btn);
+    // const currentState = switchVal["btn" + btn];
+    // console.log(currentState);
+    // const obj = {};
+    // obj["btn" + btn] = currentState ? 0 : 1;
+    // console.log(obj);
+    // await updateDoc(docRef, obj);
+    // console.log("Updated Switch");
+    // updateRTDB(obj);
   };
 
   const [isShown, setIsShown] = useState(true);
+
+  console.log(switchVal);
 
   return (
     <>

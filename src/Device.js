@@ -1,8 +1,9 @@
 import React, { useContext } from "react";
 import { collection, getDocs, addDoc } from "firebase/firestore";
-import { db } from "./firebase";
+import { db, rtdb } from "./firebase";
 import DeviceList from "./DeviceList";
 import DidContext from "./context/DidContext";
+import { ref, set } from "firebase/database";
 
 const Device = (props) => {
   const context = useContext(DidContext);
@@ -24,11 +25,30 @@ const Device = (props) => {
     btn3: { val: 0, icon: "" },
     btn4: { val: 0, icon: "" },
   };
+  const addRTDB = (devID, err) => {
+    set(
+      ref(rtdb, "User/" + localStorage.getItem("uid") + "/devices/" + devID),
+      {
+        name: "Room Name",
+        btn1: { val: 0, icon: "" },
+        btn2: { val: 0, icon: "" },
+        btn3: { val: 0, icon: "" },
+        btn4: { val: 0, icon: "" },
+      }
+    )
+      .then(() => {
+        console.log("Data added sucessfully");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
   const addDevice = () => {
     addDoc(docRef, data)
-      .then((data) => {
-        console.log(data._key.path.segments[3]);
+      .then((res) => {
+        console.log(res._key.path.segments[3]);
         props.fetch();
+        addRTDB(res._key.path.segments[3]);
       })
       .catch((error) => {
         console.log(error);

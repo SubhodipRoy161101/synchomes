@@ -1,12 +1,14 @@
 import React, { useRef, useState } from "react";
 import { doc, updateDoc } from "firebase/firestore";
-import { db } from "./firebase";
+import { db, rtdb } from "./firebase";
 
 import "./SwitchControl.css";
 import "./SwitchControlFilled.css";
 
 import { Box, Button, useColorModeValue } from "@chakra-ui/react";
 import BtnIconChange from "./BtnIconChange";
+
+import { ref, update } from "firebase/database";
 
 const SwitchControl = (props) => {
   const uid = localStorage.getItem("uid") ? localStorage.getItem("uid") : 0;
@@ -51,6 +53,26 @@ const SwitchControl = (props) => {
     }, 500);
   };
 
+  const updateRTDB = (btn, updateVal, currentIcon) => {
+    const updates = {};
+    updates[
+      "/User/" +
+        localStorage.getItem("uid") +
+        "/devices/" +
+        localStorage.getItem("deviceControl") +
+        "/" +
+        btn
+    ] = { val: updateVal, icon: currentIcon };
+
+    update(ref(rtdb), updates)
+      .then(() => {
+        console.log("updated data sucessfully");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   const updateSwitch = async (btn) => {
     console.log("handleOnClick");
     if (isLongPress.current) {
@@ -64,7 +86,7 @@ const SwitchControl = (props) => {
 
     await updateDoc(docRef, obj);
     setAction("click");
-    // deviceVals();
+    updateRTDB(btn, currentState ? 0 : 1, currentIcon);
   };
 
   const updateBtnIco = async (btn, ico) => {
