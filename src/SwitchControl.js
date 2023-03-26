@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import { doc, updateDoc } from "firebase/firestore";
 import { db, rtdb } from "./firebase";
 
@@ -8,7 +8,7 @@ import "./SwitchControlFilled.css";
 import { Box, Button, useColorModeValue } from "@chakra-ui/react";
 import BtnIconChange from "./BtnIconChange";
 
-import { ref, update } from "firebase/database";
+import { ref, update, onValue } from "firebase/database";
 
 const SwitchControl = (props) => {
   const uid = localStorage.getItem("uid") ? localStorage.getItem("uid") : 0;
@@ -34,6 +34,8 @@ const SwitchControl = (props) => {
 
   const [showIconChangeBox, setShowIconChangeBox] = useState(false);
   const [action, setAction] = useState("");
+
+  const [values, setValues] = useState({});
   const timerRef = useRef();
   const isLongPress = useRef();
 
@@ -79,12 +81,12 @@ const SwitchControl = (props) => {
       console.log("Is long press - not continuing.");
       return;
     }
-    const currentState = props.switchVal[btn].val;
+    const currentState = parseInt(values.val);
     const currentIcon = props.switchVal[btn].icon;
     const obj = {};
     obj[btn] = { val: currentState ? 0 : 1, icon: currentIcon };
 
-    await updateDoc(docRef, obj);
+    // await updateDoc(docRef, obj);
     setAction("click");
     updateRTDB(btn, currentState ? 0 : 1, currentIcon);
   };
@@ -132,6 +134,29 @@ const SwitchControl = (props) => {
       btnOffIcon = "tv";
     }
   }
+  console.log(values);
+
+  const reRender = () => {
+    const starCountRef = ref(
+      rtdb,
+      "/User/" +
+        localStorage.getItem("uid") +
+        "/devices/" +
+        localStorage.getItem("deviceControl") +
+        "/" +
+        props.btn +
+        "/"
+    );
+    onValue(starCountRef, (snapshot) => {
+      const data = snapshot.val();
+      // console.log(data);
+      setValues(data);
+      // updateStarCount(postElement, data);
+    });
+  };
+  useEffect(() => {
+    reRender();
+  }, []);
 
   return (
     <>
@@ -152,6 +177,7 @@ const SwitchControl = (props) => {
         onTouchStart={handleTouchStart}
         onTouchEnd={handleTouchEnd}
       >
+        {values.val}
         <Button
           colorScheme="red"
           bg={useColorModeValue("red.300", "rgba(225, 225, 225, 0.1)")}
@@ -166,15 +192,15 @@ const SwitchControl = (props) => {
           }}
         >
           <Box
-            color={props.values.val ? switchOnColor : switchOffColor}
+            color={parseInt(values.val) ? switchOnColor : switchOffColor}
             className={
-              props.values.val
+              parseInt(values.val)
                 ? "material-symbols-rounded"
                 : "material-symbols-outlined"
             }
             fontSize={50}
           >
-            {props.values.val ? btnOnIcon : btnOffIcon}
+            {parseInt(values.val) ? btnOnIcon : btnOffIcon}
           </Box>
         </Button>
       </div>

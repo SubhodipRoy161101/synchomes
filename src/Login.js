@@ -30,7 +30,7 @@ const Login = () => {
   const googleSignIn = () => {
     signInWithPopup(auth, provider).then((data) => {
       // console.log(data);
-      console.log(data.user.reloadUserInfo.localId);
+      console.log(data);
       const uid = data.user.reloadUserInfo.localId;
       localStorage.setItem("uid", uid);
       console.log(uid);
