@@ -15,6 +15,16 @@ const SwitchPage = (props) => {
   return (
     <div className="container">
       <div className="row my-5 justify-content-between">
+        <div
+          class="btn"
+          onClick={() => {
+            window.location.href = `192.168.4.1/?uid=${localStorage.getItem(
+              "uid"
+            )}&did=${localStorage.getItem("deviceControl")}`;
+          }}
+        >
+          Authenticate
+        </div>
         {btns.map((btn) => {
           if (btn === "name" || btn === "icon") {
             return;
