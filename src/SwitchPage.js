@@ -18,7 +18,7 @@ const SwitchPage = (props) => {
         <div
           class="btn"
           onClick={() => {
-            window.location.href = `192.168.4.1/?uid=${localStorage.getItem(
+            window.location.href = `http://192.168.4.1/?uid=${localStorage.getItem(
               "uid"
             )}&did=${localStorage.getItem("deviceControl")}`;
           }}
